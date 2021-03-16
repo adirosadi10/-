@@ -186,7 +186,7 @@
                 <div class="row">
                     <div class="col m5 s12">
                         <div class="card-panel blue darken-2 center white-text">
-                            <i class="material-icons medium">place</i>
+                            
                             <h5>Contact</h5>
                             <div class="row">
                                 <div class="col s3"><i class="material-icons tiny">email</i></div>
@@ -206,8 +206,12 @@
                     </div>
                 
                     <div class="col m7 s12">
-                        <div class="card-panel">
+                        <form name="adirosadi-kontak-form" class="card-panel">
                             <h5>Please fill out this form</h5>
+                            <div class="alert hide">
+                                <span class="closebtn " onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Terima kasih,</strong> pesan Anda telah terkirim.
+                            </div>
                             <div class="input-field">
                                 <input type="text" name="name" id="name" required class="validate">
                                 <label for="name">Name</label>
@@ -224,8 +228,22 @@
                                 <textarea name="message" id="message" class="materialize-textarea"></textarea>
                                 <label for="message">Message</label>
                             </div>
-                            <button type="submit" class="btn blue darken-2">Send</button>
-                        </div>
+                            <button type="button" class="btn blue darken-2 btn-loading hide">
+                                <div class="preloader-wrapper small active">
+                                    <div class="spinner-layer spinner-green">
+                                      <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                      </div><div class="gap-patch">
+                                        <div class="circle"></div>
+                                      </div><div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </button>
+                            
+                            <button type="submit" class="btn blue darken-2 btn-kirim">Send</button>   
+                        </form>
                     </div>
                 </div>
             </div>
@@ -258,6 +276,34 @@
             scrollOffset: 50
         });
 
+      </script>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwZgeC2eJXaiuNFlLeo_8AFx_rMntsm9ZuWUEE6BWsCMap9zzyT78R_lY0lRYKteTXt/exec'
+        const form = document.forms['adirosadi-kontak-form']
+        const btnKirim = document.querySelector('.btn-kirim')
+        const btnLoading = document.querySelector('.btn-loading')
+        const myAlert = document.querySelector('.alert')
+        
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          //tombol send diklik
+          //tapilakn loading, hilangkan send
+          btnLoading.classList.toggle('hide')
+          btnKirim.classList.toggle('hide')
+          
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                btnLoading.classList.toggle('hide')
+                btnKirim.classList.toggle('hide')
+                console.log('Success!', response)
+                form.reset()
+                myAlert.classList.toggle('hide')
+                
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
       </script>
     </body>
   </html>

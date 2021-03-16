@@ -23,3 +23,35 @@ section,
 footer {
   padding: 20px 0;
 }
+.btn{
+  border-radius: 5px;
+}
+.small{
+  font-size:10px !important;
+}
+/* The alert message box */
+.alert {
+  padding: 10px;
+  background-color: rgb(149, 250, 149); 
+  color: white;
+  margin-bottom: 15px;
+  border: green 2px solid;
+  border-radius: 5px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
