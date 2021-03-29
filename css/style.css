@@ -19,9 +19,16 @@
   max-width: 150px;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
-section,
-footer {
+section {
   padding: 20px 0;
+}
+footer{
+  padding: 10px 0px;
+  
+  
+}
+.git{
+  margin: 0px 5px;
 }
 .btn{
   border-radius: 5px;
